@@ -308,18 +308,9 @@ impl<'w, 's> Commands<'w, 's> {
     #[inline]
     #[track_caller]
     pub fn entity<'a>(&'a mut self, entity: Entity) -> EntityCommands<'w, 's, 'a> {
-        #[inline(never)]
-        #[cold]
-        #[track_caller]
-        fn panic_no_entity(entity: Entity) -> ! {
-            panic!(
-                "Attempting to create an EntityCommands for entity {entity:?}, which doesn't exist.",
-            );
-        }
-
-        match self.get_entity(entity) {
-            Some(entity) => entity,
-            None => panic_no_entity(entity),
+        EntityCommands {
+            entity,
+            commands: self,
         }
     }
 
