@@ -9,7 +9,7 @@ use crate::{
     world::{EntityWorldMut, FromWorld, World},
 };
 use bevy_ecs_macros::SystemParam;
-use bevy_utils::tracing::{error, info};
+use bevy_utils::tracing::{error, info, warn};
 pub use command_queue::CommandQueue;
 pub use parallel_scope::*;
 use std::marker::PhantomData;
